@@ -1,6 +1,4 @@
-# ===============================
 # Logs
-# ===============================
 logs
 *.log
 npm-debug.log*
@@ -9,36 +7,22 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# ===============================
-# Dependencies / Build
-# ===============================
-node_modules/
-dist/
-dist-ssr/
+node_modules
+dist
+dist-ssr
 *.local
 
-# ===============================
-# Environment variables (SEGURANÇA)
-# ===============================
-.env
-.env.*
-!.env.example
-
-# ===============================
-# Editor / OS files
-# ===============================
+# Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea/
+.idea
 .DS_Store
-Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+# Environment variables
+.env
+.env.*
 
-# ===============================
-# Vercel
-# ===============================
-.vercel
