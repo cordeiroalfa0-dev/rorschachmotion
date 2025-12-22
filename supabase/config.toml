@@ -1,0 +1,13 @@
+project_id = "imrzgvpnhblymxruixwd"
+
+[functions.chat]
+verify_jwt = false
+
+[functions.generate-social-content]
+verify_jwt = false
+
+[functions.generate-blog-post]
+verify_jwt = false
+
+[functions.send-backup]
+verify_jwt = false
