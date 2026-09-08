@@ -5,13 +5,31 @@ import type { Database } from './types';
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
+if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+  // eslint-disable-next-line no-console
+  console.error(
+    "[Supabase] Variáveis de ambiente ausentes: VITE_SUPABASE_URL e/ou " +
+      "VITE_SUPABASE_PUBLISHABLE_KEY. Configure-as em Vercel > Settings > " +
+      "Environment Variables e faça um novo deploy. O site vai renderizar, " +
+      "mas funcionalidades que dependem do Supabase (blog, admin, config do site) " +
+      "não vão funcionar até isso ser corrigido."
+  );
+}
+
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";
 
-export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
-  auth: {
-    storage: localStorage,
-    persistSession: true,
-    autoRefreshToken: true,
+// Usa um placeholder válido quando as env vars faltam, para não derrubar
+// a renderização do app inteiro (createClient lança erro síncrono se
+// receber URL/key undefined).
+export const supabase = createClient<Database>(
+  SUPABASE_URL || "https://placeholder.supabase.co",
+  SUPABASE_PUBLISHABLE_KEY || "placeholder-anon-key",
+  {
+    auth: {
+      storage: localStorage,
+      persistSession: true,
+      autoRefreshToken: true,
+    },
   }
-});
+);
